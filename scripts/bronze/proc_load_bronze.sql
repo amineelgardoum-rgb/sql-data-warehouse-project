@@ -104,9 +104,9 @@ BEGIN
 		PRINT('Start Loading the ERP tables')
 		PRINT('------------------------------');
 		SET @start_time=GETDATE();
-		PRINT('>>>>> Truncating Table:bronze.erp_cut_az12');
+		PRINT('>>>>> Truncating Table:bronze.erp_cust_az12');
 		TRUNCATE TABLE bronze.erp_cut_az12;
-		PRINT('>>>>> Inserting Data Into: bronze.erp_cut_az12');
+		PRINT('>>>>> Inserting Data Into: bronze.erp_cust_az12');
 		BULK INSERT bronze.erp_cut_az12
 		FROM 'C:\Users\lenovo\Desktop\sql-data-warehouse-project\datasets\source_erp\CUST_AZ12.csv'
 		WITH (
