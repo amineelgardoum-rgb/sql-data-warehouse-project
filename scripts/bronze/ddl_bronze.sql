@@ -1,3 +1,16 @@
+/*
+Purpose of this Script:
+    This is a DDL script for the Data Warehouse.
+    It creates the tables of the Bronze Layer.
+    It also creates the three schemas of the Medallion Architecture,
+    where data is processed through an ETL pipeline:
+    Bronze → Silver → Gold.
+
+WARNING:
+    This script drops the tables in the Bronze Layer,
+    which means all data stored in those tables will be deleted.
+*/
+
 IF OBJECT_ID ('bronze.crm_cust_info','U') IS NOT NULL
 	DROP TABLE bronze.crm_cust_info;
 
