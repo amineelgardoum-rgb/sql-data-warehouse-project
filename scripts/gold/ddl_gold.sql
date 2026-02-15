@@ -5,9 +5,6 @@
    - Build analytical views for Sales reporting
    - Fact table in the center + Customer/Product dimensions
 
-   NOTE:
-   - ROW_NUMBER() is used here to generate surrogate keys
-     (OK for learning/demo, not stable for production)
    =============================================================== */
 
 
@@ -49,8 +46,7 @@ GO
    =============================================================== */
 CREATE OR ALTER VIEW gold.dim_customers AS   
 SELECT       
-    ROW_NUMBER() OVER(ORDER BY ci.cst_id) AS customer_key, -- Surrogate key (demo)
-
+    ROW_NUMBER() OVER(ORDER BY ci.cst_id) AS customer_key, 
     ci.cst_id          AS customer_id,        -- Business/customer id
     ci.cst_key         AS customer_number,    -- Customer reference number
     ci.cst_firstname   AS first_name,         -- First name
@@ -86,8 +82,7 @@ GO
    =============================================================== */
 CREATE OR ALTER VIEW gold.dim_products AS   
 SELECT      
-    ROW_NUMBER() OVER(ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key, -- Surrogate key (demo)
-
+    ROW_NUMBER() OVER(ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key, 
     pn.prd_id        AS product_id,           -- Business product id
     pn.prd_key       AS product_number,       -- Product reference number
     pn.prd_nm        AS product_name,         -- Product name
