@@ -198,40 +198,16 @@ This data warehouse project consolidates sales data from multiple source systems
 
 ### Installation Steps
 
-1. **Create Database**
-   ```sql
-   CREATE DATABASE DataWarehouse;
-   GO
-   USE DataWarehouse;
-   GO
-   ```
+1. **Deploy Stored Procedures**
+   - Run `scripts/bronze/proc_load_bronze.sql`
+   - Run `scripts/silver/proc_silver_load.sql`
 
-2. **Create Schemas**
-   ```sql
-   CREATE SCHEMA bronze;
-   CREATE SCHEMA silver;
-   CREATE SCHEMA gold;
-   GO
-   ```
+2. **Create Gold Views**
+   - Run `scripts/gold/ddl_gold.sql` to create all gold layer views
 
-3. **Create Bronze Tables**
-   - Run table creation scripts for all bronze layer tables
-
-4. **Create Silver Tables**
-   - Run table creation scripts for all silver layer tables
-
-5. **Deploy Stored Procedures**
-   - Deploy `bronze.load_bronze` stored procedure
-   - Deploy `silver.load_silver` stored procedure
-
-6. **Create Gold Views**
-   - Create `gold.dim_customers` view
-   - Create `gold.dim_products` view
-   - Create `gold.fact_sales` view
-
-7. **Configure Data Source**
-   - Update file paths in `bronze.load_bronze` to point to your CSV files
-   - Default path: `C:\Users\lenovo\Desktop\sql-data-warehouse-project\datasets\`
+3. **Configure Data Source**
+   - Update file paths in `bronze.load_bronze` stored procedure
+   - Point to your CSV files location in the `datasets/` folder
 
 ---
 
@@ -378,18 +354,24 @@ sql-data-warehouse-project/
 │       └── PX_CAT_G1V2.csv
 │
 ├── scripts/
-│   ├── 01_create_database.sql
-│   ├── 02_create_schemas.sql
-│   ├── 03_create_bronze_tables.sql
-│   ├── 04_create_silver_tables.sql
-│   ├── 05_sp_load_bronze.sql
-│   ├── 06_sp_load_silver.sql
-│   └── 07_create_gold_views.sql
+│   ├── bronze/
+│   │   ├── ddl_bronze.sql
+│   │   └── proc_load_bronze.sql
+│   │
+│   ├── silver/
+│   │   ├── ddl_silver.sql
+│   │   └── proc_silver_load.sql
+│   │
+│   └── gold/
+│       └── ddl_gold.sql
 │
-└── docs/
-    ├── README.md
-    ├── data_catalog.md
-    └── architecture_diagram.png
+├── docs/
+│   └── data_catalog.md
+│
+├── tests/
+│
+├── LICENSE
+└── README.md
 ```
 
 ---
@@ -479,7 +461,7 @@ To extend this data warehouse:
 
 ## 📄 License
 
-This project is for educational and demonstration purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
